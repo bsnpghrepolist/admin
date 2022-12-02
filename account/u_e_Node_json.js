@@ -9,5 +9,12 @@ var u_e_Node_json =
                 "guest": 1
             }
         }
+    },
+    "Oba": {
+        "1": {
+            "1": {
+                "guest": 1
+            }
+        }
     }
 }
