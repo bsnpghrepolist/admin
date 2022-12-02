@@ -9,6 +9,9 @@ var e_Note_json =
             },
             "4": {
                 "pub01": 1
+            },
+            "6": {
+                "guest": 1
             }
         }
     }
