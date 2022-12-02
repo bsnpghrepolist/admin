@@ -8,7 +8,10 @@ $(document).ready(function(){
   $("button").click(function(){
     var usrname="guest"
     var urls = `https://bsnpghrepolist.github.io/${usrname}/myoj/e_Note_json.js`
-    $("#div1").load(urls);
+    $("#div1").load(urls, function(dat){
+      alert(dat)
+      return "a"
+    });
     alert(urls)
   });
 });
