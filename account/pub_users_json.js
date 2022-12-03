@@ -7,5 +7,6 @@ var pub_users_json =
     "wdingpub01": 1,
     "e01": 1,
     "e03": 1,
-    "e05": 1
+    "e05": 1,
+    "e07": 1
 }
