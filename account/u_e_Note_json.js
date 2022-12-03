@@ -10,7 +10,8 @@ var u_e_Note_json =
                 "pp05": 1
             },
             "2": {
-                "guest": 1
+                "guest": 1,
+                "pp05": 1
             },
             "3": {
                 "guest": 1
