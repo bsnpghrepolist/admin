@@ -6,5 +6,6 @@ var pub_users_json =
     "pp05": 1,
     "wdingpub01": 1,
     "e01": 1,
-    "e03": 1
+    "e03": 1,
+    "e05": 1
 }
