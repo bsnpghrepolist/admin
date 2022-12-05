@@ -16,7 +16,8 @@ var u_e_Note_json =
             "2": {
                 "guest": 1,
                 "pp05": 1,
-                "wdingpub01": 1
+                "wdingpub01": 1,
+                "nt05": 1
             },
             "3": {
                 "guest": 1
