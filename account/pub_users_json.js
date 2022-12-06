@@ -14,5 +14,6 @@ var pub_users_json =
     "nt06": 1,
     "nt07": 1,
     "nt08": 1,
-    "nt09": 1
+    "nt09": 1,
+    "nt10": 1
 }
