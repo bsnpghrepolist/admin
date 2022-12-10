@@ -36,5 +36,6 @@ var pub_users_json =
     "e09n": 1,
     "e09o": 1,
     "e09p": 1,
-    "Wdingpba": 1
+    "Wdingpba": 1,
+    "wdingpba": 1
 }
