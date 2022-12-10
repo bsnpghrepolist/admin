@@ -26,7 +26,8 @@ var u_e_Note_json =
                 "e09l": 1,
                 "e09m": 1,
                 "e09p": 1,
-                "wdingpba": 1
+                "wdingpba": 1,
+                "b0": 1
             },
             "2": {
                 "guest": 1,
