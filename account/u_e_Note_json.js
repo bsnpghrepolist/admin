@@ -92,5 +92,12 @@ var u_e_Note_json =
                 "wdingpba": 1
             }
         }
+    },
+    "1Pe": {
+        "3": {
+            "7": {
+                "wdingpba": 1
+            }
+        }
     }
 }
