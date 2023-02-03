@@ -46,7 +46,8 @@ var u_e_Note_json =
                 "guest": 1
             },
             "6": {
-                "pp04": 1
+                "pp04": 1,
+                "wdingpba": 1
             },
             "7": {
                 "guest": 1
