@@ -178,6 +178,11 @@ var u_e_Note_json =
         }
     },
     "Jug": {
+        "2": {
+            "13": {
+                "wdingpba": 1
+            }
+        },
         "10": {
             "6": {
                 "wdingpba": 1
