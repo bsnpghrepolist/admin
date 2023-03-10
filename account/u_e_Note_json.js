@@ -141,5 +141,12 @@ var u_e_Note_json =
                 "wdingpba": 1
             }
         }
+    },
+    "2Ki": {
+        "23": {
+            "13": {
+                "wdingpba": 1
+            }
+        }
     }
 }
