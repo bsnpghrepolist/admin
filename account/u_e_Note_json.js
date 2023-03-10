@@ -176,5 +176,12 @@ var u_e_Note_json =
                 "wdingpba": 1
             }
         }
+    },
+    "Jug": {
+        "10": {
+            "6": {
+                "wdingpba": 1
+            }
+        }
     }
 }
