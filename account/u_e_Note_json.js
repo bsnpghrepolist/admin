@@ -404,6 +404,11 @@ var u_e_Note_json =
             "28": {
                 "wdingpba": 1
             }
+        },
+        "22": {
+            "8": {
+                "wdingpba": 1
+            }
         }
     },
     "Jug": {
