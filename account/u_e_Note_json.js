@@ -633,6 +633,11 @@ var u_e_Note_json =
         }
     },
     "Jug": {
+        "1": {
+            "15": {
+                "wdingpba": 1
+            }
+        },
         "2": {
             "13": {
                 "wdingpba": 1
