@@ -963,5 +963,12 @@ var u_e_Note_json =
                 "wdingpba": 1
             }
         }
+    },
+    "Amo": {
+        "1": {
+            "2": {
+                "wdingpba": 1
+            }
+        }
     }
 }
