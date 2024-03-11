@@ -13,6 +13,7 @@
 
   <h2>e_Notes</h2>
   <h id="repopathname"></h>
+  <h id="hostref"></h>
   <div id="div1">
   </div>
 
@@ -84,6 +85,7 @@
     var decodedUrlNew = decodeURIComponent(codedUrlNew)
     console.log(decodedUrlNew)
 
+    $("#hostref").text(decodedUrlNew)
     if (!usrname) return alert("url miss ?repopathname=")
     return {usrname:usrname, newUrl:decodedUrlNew}
   }
