@@ -1,27 +1,64 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  $("button").click(function(){
-    var usrname="guest"
-    var urls = `https://bsnpghrepolist.github.io/${usrname}/myoj/e_Note_json.js`
-    $("#div1").load(urls, function(dat){
-      alert(dat)
-      return "a"
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://bsnpghrepolist.github.io/wdingpba/account/myoj/e_Note_json.js"></script>
+  <script language="javascript" src="./js/Sort_Table.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("button").click(function () {
+        var usrname = "guest"
+        var urls = `https://bsnpghrepolist.github.io/${usrname}/myoj/e_Note_json.js`
+        $("#div1").load(urls, function (dat) {
+          alert(dat)
+          return "a"
+        });
+        alert(urls)
+      });
     });
-    alert(urls)
-  });
-});
-</script>
+  </script>
 </head>
+
 <body>
 
-<div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+  <div id="div1">
+    <h2>e_Notes</h2>
+  </div>
 
-<button>Get External Content</button>
+  <button>Get External Content</button>
 
 </body>
+
 </html>
+
+<script>
+  var obj = _bnotes
+  // Function to walk through an object
+  function walkObject(obj) {
+    var row = 0
+    var stb = "<table id='tab' border='1'><thead><tr><th>#</th><th>BCV</th><th>Text</th></tr><tbody>"
+    // Iterate over each key in the object
+    for (let book in obj) {
+      // Check if the value corresponding to the key is an object itself
+      for (chap in obj[book]) {
+        // If it is an object, recursively call the walkObject function
+        for (vers in obj[book][chap]) {
+          var txt = obj[book][chap][vers].trim()
+          var ary = [book, chap, vers]
+
+          //console.log(ary.join() + ': ' + txt);
+          if (txt.length > 0) {
+            stb += `<tr><td>${row++}</td><td>${ary.join()}</td><td>${txt}</td></tr>`
+          }
+        }
+      }
+    }
+    return stb + "<tbody></table>"
+  }
+
+  // Call the walkObject function with the example object
+  var stb = walkObject(obj);
+  document.body.innerHTML += (stb);
+  Sort_Table("#tab")
+</script>
