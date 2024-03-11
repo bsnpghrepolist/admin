@@ -2,38 +2,27 @@
 <html>
 
 <head>
+  <title>e_Notes</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://bsnpghrepolist.github.io/wdingpba/account/myoj/e_Note_json.js"></script>
   <script language="javascript" src="./js/Sort_Table.js"></script>
-  <script>
-    $(document).ready(function () {
-      $("button").click(function () {
-        var usrname = "guest"
-        var urls = `https://bsnpghrepolist.github.io/${usrname}/myoj/e_Note_json.js`
-        $("#div1").load(urls, function (dat) {
-          alert(dat)
-          return "a"
-        });
-        alert(urls)
-      });
-    });
-  </script>
+
 </head>
 
 <body>
 
+  <h2>e_Notes</h2>
   <div id="div1">
-    <h2>e_Notes</h2>
   </div>
 
-  <button>Get e_Notes Content</button>
+  <button>Load e_Notes into Table</button>
 
 </body>
 
 </html>
 
 <script>
-  var obj = _bnotes
+  //var obj = _bnotes
   // Function to walk through an object
   function walkObject(obj) {
     var row = 0
@@ -58,7 +47,27 @@
   }
 
   // Call the walkObject function with the example object
-  var stb = walkObject(obj);
-  document.body.innerHTML += (stb);
-  Sort_Table("#tab")
+
+</script>
+
+<script>
+  $(document).ready(function () {
+    $("button").click(function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      var usrname = urlParams.get('repopathname')
+      $("title").text(usrname);
+      var urls = `https://bsnpghrepolist.github.io/${usrname}/account/myoj/e_Note_json.js`
+      $("#div1").load(urls, function (dat) {
+        if (!dat) alert("repopathname has no data.")
+        var idx = dat.indexOf("=")
+        var txt = dat.substring(idx + 1)
+        var obj = JSON.parse(txt)
+        var stb = walkObject(obj);
+        $(this).html (stb);
+        Sort_Table("#tab")
+        return "a"
+      });
+      alert(usrname)
+    });
+  });
 </script>
