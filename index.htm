@@ -6,6 +6,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://bsnpghrepolist.github.io/wdingpba/account/myoj/e_Note_json.js"></script>
   <script language="javascript" src="./js/Sort_Table.js"></script>
+  <style>
+    .bcvLink{
+      color:blue;
+    }
+  </style>
 
 </head>
 
@@ -37,7 +42,7 @@
   }
   function walkObject(obj) {
     var row = 0
-    var stb = "<table id='tab' border='1'><thead><tr><th>#</th><th>BCV</th><th>Date</th><th>mode</th><td>Text</td></tr><tbody>"
+    var stb = "<table id='tab' border='1'><thead><tr><th>#</th><th>BCV</th><th>Date</th><th>md</th><td>Text</td></tr><tbody>"
     // Iterate over each key in the object
     for (let book in obj) {
       // Check if the value corresponding to the key is an object itself
