@@ -1,17 +1,19 @@
-function Sort_Table(tid) {
+//2024/03/11
+function Sort_Table(tid, defaultCol, sortDirection) {
     var tid2 = tid.replace(/^\#/, "")
     $("#" + tid2).find("th").each(function (i) {
         $(this).bind("click", function () {
-            sortTableOnColumnIdx(tid2, i)
+            sortTableOnColumnIdx(tid2, i, 'asc')
         })
     });
+    sortTableOnColumnIdx(tid2, defaultCol, sortDirection)
 }
-function sortTableOnColumnIdx(tid, n) {
-    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0,
+function sortTableOnColumnIdx(tid, nCol, defaultDirection) {
+    var table, rows, switching, i, x, y,strx,stry, shouldSwitch, dir, switchcount = 0,
         table = document.getElementById(tid),
         switching = true;
     //Set the sorting direction to ascending:
-    dir = "asc";
+    dir = defaultDirection;//"desc";// asc|desc
     /*Make a loop that will continue until
     no switching has been done:*/
     while (switching) {
@@ -25,18 +27,21 @@ function sortTableOnColumnIdx(tid, n) {
             shouldSwitch = false;
             /*Get the two elements you want to compare,
             one from current row and one from the next:*/
-            x = rows[i].getElementsByTagName("TD")[n];
-            y = rows[i + 1].getElementsByTagName("TD")[n];
+            x = rows[i].getElementsByTagName("TD")[nCol];
+            y = rows[i + 1].getElementsByTagName("TD")[nCol];
+            strx = x.innerText.substring(0,20)
+            stry = y.innerText.substring(0,20)
+
             /*check if the two rows should switch place,
             based on the direction, asc or desc:*/
             if (dir == "asc") {
-                if (x.innerHTML > y.innerHTML) {
+                if (strx > stry) {
                     //if so, mark as a switch and break the loop:
                     shouldSwitch = true;
                     break;
                 }
             } else if (dir == "desc") {
-                if (x.innerHTML < y.innerHTML) {
+                if (strx < stry) {
                     //if so, mark as a switch and break the loop:
                     shouldSwitch = true;
                     break;
