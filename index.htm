@@ -50,27 +50,55 @@
           var dtm = get_date_mod_fr_txt(txt)
           //console.log(ary.join() + ': ' + txt);
           if (txt.length > 0) {
-            stb += `<tr><td>${row++}</td><td>${bcv}</td><td>${dtm.datetime}</td><td>${dtm.mode}</td><td>${txt}</td></tr>`
+            stb += `<tr><td>${row++}</td><td><a class='bcvLink'>${bcv}</a></td><td>${dtm.datetime}</td><td>${dtm.mode}</td><td>${txt}</td></tr>`
           }
         }
       }
     }
     return stb + "<tbody></table>"
   }
+  function walkObject_table_end() {
+    $(".bcvLink").on("click",function(){
+      var bcv = $(this).text()
+      var ret = get_url_parm_fr_my_url(bcv)
+      //$(this).attr("href", ret.newUrl)
+      console.log(ret)
+      window.open(ret.newUrl, "_target")
+    })
+  }
 
   // Call the walkObject function with the example object
+
+  function get_url_parm_fr_my_url(newBCV) {
+    const urlParams = new URLSearchParams(window.location.search);
+    var usrname = urlParams.get('repopathname')
+    var encodedUrl = urlParams.get('encodedUrl')
+    var decodedUrl = decodeURIComponent(encodedUrl)
+    //?repopathname=wdingpba&encodedUrl=file%3A%2F%2F%2FUsers%2Fweiding%2FSites%2Fweidroot%2Fweidroot_2017-01-06%2Fapp%2Fgithub%2Fbsnp21%2Fbb%2Fnp%2FBibleStudyNotePad.htm%3Fsip%3Dhttp%253A%252F%252F34.227.20.213%253A7778%26SSID%3D1710184361805wdingpba%26vision%3Dpublic%26bcv%3DAmo1%253A1
+    console.log(decodedUrl)
+    var decodedUrl_Param = new URLSearchParams(decodedUrl);
+    decodedUrl_Param.set("bcv", encodeURIComponent(newBCV))
+    var codedUrlNew = decodedUrl_Param.toString()
+    console.log(codedUrlNew)
+
+    var decodedUrlNew = decodeURIComponent(codedUrlNew)
+    console.log(decodedUrlNew)
+
+    if (!usrname) return alert("url miss ?repopathname=")
+    return {usrname:usrname, newUrl:decodedUrlNew}
+  }
 
 </script>
 
 <script>
   $(document).ready(function () {
     $("button").click(function () {
-      const urlParams = new URLSearchParams(window.location.search);
-      var usrname = urlParams.get('repopathname')
-      if (!usrname) return alert("url miss ?repopathname=")
-      $("#repopathname").text(usrname)
-      $("title").text(usrname);
-      var urls = `https://bsnpghrepolist.github.io/${usrname}/account/myoj/e_Note_json.js`
+      const ret = get_url_parm_fr_my_url("Gen1:1")
+      if (!ret.usrname) return alert("url miss ?repopathname=")
+
+      $("#repopathname").text(ret.usrname)
+      $("title").text(ret.usrname);
+      var urls = `https://bsnpghrepolist.github.io/${ret.usrname}/account/myoj/e_Note_json.js`
       $("#div1").load(urls, function (dat) {
         if (!dat) alert("repopathname has no data.")
         var idx = dat.indexOf("=")
@@ -79,6 +107,8 @@
         var stb = walkObject(obj);
         $(this).html(stb);
         Sort_Table("#tab", 2, "desc")
+        walkObject_table_end()
+
         return "a"
       });
 
