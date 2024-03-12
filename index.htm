@@ -10,6 +10,9 @@
     .bcvLink{
       color:blue;
     }
+    .hili_grey{
+      background-color: lightgray;
+    }
   </style>
 
 </head>
@@ -69,6 +72,8 @@
       var ret = get_url_parm_fr_my_url(bcv)
       //$(this).attr("href", ret.newUrl)
       console.log(ret)
+      $(".hili_grey").removeClass("hili_grey")
+      $(this).parent().addClass("hili_grey")
       window.open(ret.newUrl, "_target")
     })
   }
