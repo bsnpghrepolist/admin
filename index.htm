@@ -3,14 +3,16 @@
 
 <head>
   <title>e_Notes</title>
+  <base target="_blank" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://bsnpghrepolist.github.io/wdingpba/account/myoj/e_Note_json.js"></script>
   <script language="javascript" src="./js/Sort_Table.js"></script>
   <style>
-    .bcvLink{
-      color:blue;
+    .bcvLink {
+      color: blue;
     }
-    .hili_grey{
+
+    .hili_grey {
       background-color: lightgray;
     }
   </style>
@@ -67,20 +69,53 @@
     return stb + "<tbody></table>"
   }
   function walkObject_table_end() {
-    $(".bcvLink").on("click",function(){
+    $(".bcvLink").on("click", function () {
       var bcv = $(this).text()
       var ret = get_url_parm_fr_my_url(bcv)
       //$(this).attr("href", ret.newUrl)
       console.log(ret)
       $(".hili_grey").removeClass("hili_grey")
       $(this).parent().addClass("hili_grey")
-      window.open(ret.newUrl, "_target")
+      window.open(ret.newUrl, "_blank")
     })
   }
 
   // Call the walkObject function with the example object
 
   function get_url_parm_fr_my_url(newBCV) {
+  
+    //file:///Users/weiding/Sites/weidroot/weidroot_2017-01-06/app/github/bsnpghrepolist/admin/index.htm
+    //?_hosthref=file:///Users/weiding/Sites/weidroot/weidroot_2017-01-06/app/github/bsnp21/bb/np/BibleStudyNotePad.htm?sip=http://34.227.20.213:7778&SSID=1710374289231wdingpba&vision=public
+    var shref = '' + window.location.href
+    console.log(shref)
+    var idx1 = shref.indexOf("?")
+    var hosthref = shref.substring(idx1 + ("?_hosthref=").length)
+    console.log(hosthref)
+
+
+
+
+    // file:///Users/weiding/Sites/weidroot/weidroot_2017-01-06/app/github/bsnp21/bb/np/BibleStudyNotePad.htm
+    // ?sip=http://34.227.20.213:7778&SSID=1710374289231wdingpba&vision=public
+    var urlParams2 = new URLSearchParams(hosthref);
+    var SSID = urlParams2.get("SSID") //1710374289231wdingpba
+    console.log(SSID)
+    var usrname = ""
+    var reg = new RegExp(/\d+(\w+)/)
+    var mat = SSID.match(reg)
+    if (mat) {
+      usrname = mat[1]
+    }
+
+    hosthref += "#" + newBCV
+
+
+
+    $("#hostref").text(hosthref)
+    if (!usrname) alert("url miss ?repopathname=")
+    return { usrname: usrname, newUrl: hosthref }
+  }
+  function get_url_parm_fr_my_url___old(newBCV) {
     const urlParams = new URLSearchParams(window.location.search);
     var usrname = urlParams.get('repopathname')
     var encodedUrl = urlParams.get('encodedUrl')
@@ -97,9 +132,8 @@
 
     $("#hostref").text(decodedUrlNew)
     if (!usrname) return alert("url miss ?repopathname=")
-    return {usrname:usrname, newUrl:decodedUrlNew}
+    return { usrname: usrname, newUrl: decodedUrlNew }
   }
-
 </script>
 
 <script>
