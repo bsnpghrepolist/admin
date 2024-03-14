@@ -37,7 +37,7 @@
   //var obj = _bnotes
   // Function to walk through an object
   function get_date_mod_fr_txt(txt) {
-    var mat = txt.match(/^(\d{6}_\d{6})_(\w+)[\.]/)
+    var mat = txt.match(/^(\d{6}_\d{6})[\-|_|\(](\w+)[\-|_|\)]{0,1}[\.]/) //remark:e_note: yymmdd_hhmmss(ed).
     var ret = { datetime: "", mode: "" }
     if (mat) {
       ret.datetime = mat[1]
