@@ -1,6 +1,8 @@
-// rapid table sort
-// rapid_table_sort
-function rapid_table_sort(tbID) {
+// rapid table sort; rapid sort table;
+// rapid_table_sort 
+var rapid_sort_table = function(tbID) {
+    
+    this.m_tbID = tbID;
 
     if (!tbID) {
         tbID = "table:eq(0)";
@@ -15,45 +17,51 @@ function rapid_table_sort(tbID) {
         })
     })
 
-
+    var _THIS = this;
     $(tbID).find(" > thead > tr > th").each(function () {
         $(this).on("click", function (evt) {
             evt.preventDefault()
             evt.stopPropagation()
             var header_colidx = $(this).index()
 
-            rapid_sort_table_col(tbID, header_colidx, -1)
+            ////: determine swap ascend or descend flag.
+            var asend = $(this).attr("asend")
+            if (undefined === asend) {
+                $(this).attr("asend", -1) //initial 
+
+                //remember original order.
+                $(tbID).find("> tbody > tr").each(function (i) {
+                    $(this).attr("origIdx", i)
+                })
+            }
+            asend = parseInt($(this).attr("asend"))
+            $(this).attr("asend", -asend)
+
+            /////////////////////////////////////////
+
+            _THIS.sort_col({ colIdx: header_colidx, asend: asend })
             return
         })
     })
 }
-function rapid_sort_table_col(tbID, header_colidx, sortDirection) {
-    if (!tbID) tbID = "table:eq(0)";
-    if (undefined === header_colidx) {
-        return
-    }
-    if ([1, -1].indexOf(sortDirection) < 0) sortDirection = 1
+rapid_sort_table.prototype.sort_col = function (par, colIdx, asend) {
+    var tbID = this.m_tbID;
     ////////////
+    if (!tbID) tbID = "table:eq(0)";
     var eThCol = $(`${tbID} > thead > tr > th:eq(${header_colidx})`)
-    if(!eThCol) return;
-    
-    ////: determine swap ascend or descend flag.
-    var asend = $(eThCol).attr("asend")
-    if (undefined === asend) {
-        $(eThCol).attr("asend", -1) //initial 
+    if (!eThCol) return;
 
-        //remember original order.
-        $(tbID).find("> tbody > tr").each(function (i) {
-            $(this).attr("origIdx", i)
-        })
+    if (undefined === par) {
+        return;
     }
-    asend = parseInt($(eThCol).attr("asend"))
-    $(eThCol).attr("asend", -asend)
-   
-    /////////////////////////////////////////
+    var header_colidx = par.colIdx, asend = par.asend
+    if (undefined === header_colidx) {
+        return alert("colIdx undefined")
+    }
+    if ([1, -1].indexOf(asend) < 0) return alert("asend must be [1,-1]")
 
+    ///////////////////////////////////////////
     var etrary = $(tbID).find("> tbody > tr");
-    ////: determine sort by number or string types
 
     ////:pre-check data type property.
     var bHasEmpty = false, bHasNaN = false, fmin = -999999999, tmpAry = []
@@ -112,6 +120,12 @@ function rapid_sort_table_col(tbID, header_colidx, sortDirection) {
         $(tbID).find("> tbody:eq(1)").remove()  //remove the prev tbody.
     }
 };
+
+
+
+
+
+
 
 ////////////////////////////////////////////////////////
 
