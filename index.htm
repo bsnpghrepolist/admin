@@ -7,7 +7,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://bsnpghrepolist.github.io/wdingpba/account/myoj/e_Note_json.js"></script>
   <script language="javascript" xxxsrc="./js/Sort_Table.js"></script>
-  <script language="javascript" src="./js/rapid_sort_table.js"></script>
+  <script language="javascript" src="./js/Rapid_Sort_Table.js"></script>
   <style>
     .bcvLink {
       color: blue;
@@ -159,7 +159,7 @@
         var obj = JSON.parse(txt)
         var stb = walkObject(obj);
         $(this).html(stb);
-        var sortab = new rapid_sort_table("#tab")
+        var sortab = new Rapid_Sort_Table("#tab")
         sortab.sort_col({ colIdx: 2, asend: 1 })
         //rapid_sort_table_col("#tab", {colIdx:2, asend:1})
         walkObject_table_end()

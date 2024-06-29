@@ -1,6 +1,6 @@
 // rapid table sort; rapid sort table;
 // rapid_table_sort 
-var rapid_sort_table = function(tbID) {
+var Rapid_Sort_Table = function(tbID) {
     
     this.m_tbID = tbID;
 
@@ -44,7 +44,7 @@ var rapid_sort_table = function(tbID) {
         })
     })
 }
-rapid_sort_table.prototype.sort_col = function (par, colIdx, asend) {
+Rapid_Sort_Table.prototype.sort_col = function (par, colIdx, asend) {
     var tbID = this.m_tbID;
     ////////////
     if (!tbID) tbID = "table:eq(0)";
