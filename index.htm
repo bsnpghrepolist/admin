@@ -16,7 +16,8 @@
     .hili_grey {
       background-color: lightgray;
     }
-    th{
+
+    th {
       background-color: gray;
     }
   </style>
@@ -87,7 +88,7 @@
   // Call the walkObject function with the example object
 
   function get_url_parm_fr_my_url(newBCV) {
-  
+
     //file:///Users/weiding/Sites/weidroot/weidroot_2017-01-06/app/github/bsnpghrepolist/admin/index.htm
     //?_hosthref=file:///Users/weiding/Sites/weidroot/weidroot_2017-01-06/app/github/bsnp21/bb/np/BibleStudyNotePad.htm?sip=http://34.227.20.213:7778&SSID=1710374289231wdingpba&vision=public
     var shref = '' + window.location.href
@@ -142,13 +143,15 @@
 
 <script>
   $(document).ready(function () {
-    $("button").click(function () {
-      const ret = get_url_parm_fr_my_url("Gen1:1")
-      if (!ret.usrname) return alert("url miss ?repopathname=")
+    const ret = get_url_parm_fr_my_url("Gen1:1")
+    if (!ret.usrname) return alert("url miss ?repopathname=")
 
-      $("#repopathname").text(ret.usrname)
-      $("title").text(ret.usrname);
-      var urls = `https://bsnpghrepolist.github.io/${ret.usrname}/account/myoj/e_Note_json.js`
+    $("#repopathname").text(ret.usrname)
+    $("title").text(ret.usrname);
+
+    var urls = `https://bsnpghrepolist.github.io/${ret.usrname}/account/myoj/e_Note_json.js`
+    $("button").click(function () {
+
       $("#div1").load(urls, function (dat) {
         if (!dat) alert("repopathname has no data.")
         var idx = dat.indexOf("=")
@@ -157,7 +160,7 @@
         var stb = walkObject(obj);
         $(this).html(stb);
         var sortab = new rapid_sort_table("#tab")
-        sortab.sort_col({colIdx:2, asend:1})
+        sortab.sort_col({ colIdx: 2, asend: 1 })
         //rapid_sort_table_col("#tab", {colIdx:2, asend:1})
         walkObject_table_end()
 
