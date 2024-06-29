@@ -42,5 +42,6 @@ var pub_users_json =
     "wdingpba_q": 1,
     "wdingpbax": 1,
     "wdingpbaxy": 1,
-    "wdingpbay": 1
+    "wdingpbay": 1,
+    "wdingpbaz": 1
 }
