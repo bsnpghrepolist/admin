@@ -6,7 +6,8 @@
   <base target="_blank" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://bsnpghrepolist.github.io/wdingpba/account/myoj/e_Note_json.js"></script>
-  <script language="javascript" src="./js/Sort_Table.js"></script>
+  <script language="javascript" xxxsrc="./js/Sort_Table.js"></script>
+  <script language="javascript" src="./js/rapid_table_sort.js"></script>
   <style>
     .bcvLink {
       color: blue;
@@ -152,7 +153,7 @@
         var obj = JSON.parse(txt)
         var stb = walkObject(obj);
         $(this).html(stb);
-        Sort_Table("#tab", 2, "desc")
+        rapid_table_sort("#tab", 2, "desc")
         walkObject_table_end()
 
         return "a"
