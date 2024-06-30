@@ -1,6 +1,6 @@
 // rapid table sort; rapid sort table;
 // rapid_table_sort 
-var Rapid_Sort_Table = function(tbID) {
+function Rapid_Sort_Table (tbID) {
     
     this.m_tbID = tbID;
 
