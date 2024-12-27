@@ -157,7 +157,7 @@
 
     $("#repopathname").text(ret.usrname)
     $("title").text(ret.usrname);
-    var dat=(new Date()).toString();
+    var dat=(new Date()).getTime();
 
     var urls = `https://bsnpghrepolist.github.io/${ret.usrname}/account/myoj/e_Note_json.js?dat=${dat}`
 
