@@ -32,7 +32,7 @@
 
   <h5 id="hostref"></h5>
   <h2>e_Notes</h2>
-  <h1 id="repopathname"></h1>
+  <h1 id="repopathname">uurl</h1>
   <div id="div1">
   </div>
 
@@ -111,9 +111,13 @@
     console.log(SSID)
     var usrname = ""
     var reg = new RegExp(/\d+(\w+)/)
-    var mat = SSID.match(reg)
-    if (mat) {
-      usrname = mat[1]
+    if(SSID){
+      var mat = SSID.match(reg)
+      if (mat) {
+        usrname = mat[1]
+      }
+    }else{
+      alert("no ssid")
     }
 
     hosthref += "#" + newBCV
@@ -152,10 +156,13 @@
 
     $("#repopathname").text(ret.usrname)
     $("title").text(ret.usrname);
+    var dat=(new Date()).toString();
 
-    var urls = `https://bsnpghrepolist.github.io/${ret.usrname}/account/myoj/e_Note_json.js`
+    var urls = `https://bsnpghrepolist.github.io/${ret.usrname}/account/myoj/e_Note_json.js?dat=${dat}`
+
+    $("#repopathname").text(urls);
+    
     $("button").click(function () {
-
       $("#div1").load(urls, function (dat) {
         if (!dat) alert("repopathname has no data.")
         var idx = dat.indexOf("=")
