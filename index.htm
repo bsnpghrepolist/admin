@@ -156,7 +156,7 @@
     var txt = dat.substring(idx + 1)
     var obj = JSON.parse(txt)
     var stb = walkObject(obj);
-    $(this).html(stb);
+    $("#div1").html(stb);
     var sortab = new Rapid_Sort_Table("#tab")
     sortab.sort_col({ colIdx: 2, asend: 1 })
     //rapid_sort_table_col("#tab", {colIdx:2, asend:1})
