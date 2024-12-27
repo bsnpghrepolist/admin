@@ -20,7 +20,8 @@
     th {
       background-color: gray;
     }
-    button{
+
+    button {
       width: 100%;
       font-size: larger;
     }
@@ -112,12 +113,12 @@
     console.log(SSID)
     var usrname = ""
     var reg = new RegExp(/\d+(\w+)/)
-    if(SSID){
+    if (SSID) {
       var mat = SSID.match(reg)
       if (mat) {
         usrname = mat[1]
       }
-    }else{
+    } else {
       alert("no ssid")
     }
 
@@ -148,6 +149,23 @@
     if (!usrname) return alert("url miss ?repopathname=")
     return { usrname: usrname, newUrl: decodedUrlNew }
   }
+
+  function Dat_to_Table(dat) {
+    if (!dat) return alert("repopathname has no data.")
+    var idx = dat.indexOf("=")
+    var txt = dat.substring(idx + 1)
+    var obj = JSON.parse(txt)
+    var stb = walkObject(obj);
+    $(this).html(stb);
+    var sortab = new Rapid_Sort_Table("#tab")
+    sortab.sort_col({ colIdx: 2, asend: 1 })
+    //rapid_sort_table_col("#tab", {colIdx:2, asend:1})
+    walkObject_table_end()
+
+  }
+
+
+
 </script>
 
 <script>
@@ -157,13 +175,42 @@
 
     $("#repopathname").text(ret.usrname)
     $("title").text(ret.usrname);
-    var dat=(new Date()).getTime();
+    var dat = (new Date()).getTime();
 
-    var urls = `https://bsnpghrepolist.github.io/${ret.usrname}/account/myoj/e_Note_json.js?dat=${dat}`
+    var urls = `https://bsnpghrepolist.github.io/${ret.usrname}/account/myoj/e_Note_json.js`;///?dat=${dat}`
 
     $("#datapath").attr("href", urls);
 
     $("button").click(function () {
+      $.ajax({
+        url: urls,
+        type: 'Get',
+        cache: false,
+        dataType: "text",
+        contentType: "application/json; charset=utf-8",
+        success: function (dat) {
+          Dat_to_Table(dat)
+        },
+        error: function (xhr, status, error) {
+          if (xhr.status > 0) {
+            alert('got error: ' + status);
+          }
+        }
+      })
+        .done(function (ret) {
+          var ret = JSON.parse(ret)
+          BsnpRestUti.Dbugar_store(ret)
+          cbf(ret)
+        })
+        .fail(function (xhr, textStatus, errorThrown) {
+          alert("xhr.responseText=" + xhr.responseText + "\n,textStatus=" + textStatus);
+          //alert("textStatus="+textStatus);
+        });
+
+
+
+
+      /*
       $("#div1").load(urls, function (dat) {
         if (!dat) alert("repopathname has no data.")
         var idx = dat.indexOf("=")
@@ -178,6 +225,7 @@
 
         return "a"
       });
+      */
 
     });
   });
