@@ -1,4 +1,4 @@
-var obj = _bnotes
+
 // Function to walk through an object
 function eNotes2Table(obj) {
   var idx = 0, tab_id = "tab_for_eNotes";
